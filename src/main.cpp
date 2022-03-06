@@ -3,6 +3,97 @@
 #include <fstream> 
 #include <vector>
 
+std::vector<std::string> get_tasks_list()
+{
+    // open the tasks file or create a new one if not exist
+    std::fstream tasks_file {"tasks.txt", std::ios::in | std::ios::out | std::ios::app};
+
+    std::vector<std::string> tasks_list;
+
+    if(!tasks_file.is_open())
+    {
+        std::cout << "Unable to open the file." << std::endl;
+    }
+    else
+    {
+        // loop through the file and extract each line
+        // as a task and push it to the tasks list
+        std::string single_task;
+        
+        while(getline(tasks_file, single_task))
+        {
+            tasks_list.push_back(single_task);
+        }
+
+        // close the file
+        tasks_file.close();
+    }
+
+    return tasks_list;
+}
+
+void display_tasks(std::vector<std::string> & tasks_list)
+{
+    // display all tasks
+    unsigned short int line {1};
+
+    std::cout << "\n[Tasks]\n" << std::endl;
+
+    for(auto &task: tasks_list)
+    {
+        std::cout << "[" << line << "] " << task << std::endl;
+        line++;
+    }
+}
+
+void add_task(std::string task)
+{
+    // open the tasks file or create a new one if not exist
+    std::fstream tasks_file {"tasks.txt", std::ios::in | std::ios::out | std::ios::app};
+
+    if(!tasks_file.is_open())
+    {
+        std::cout << "Unable to open the file to add a new task." << std::endl;
+    }
+    else
+    {
+        tasks_file << task << "\n";
+
+        // close the file
+        tasks_file.close();
+    }
+}
+
+void rewrite_tasks_to_file(std::vector<std::string> &tasks_list)
+{
+    // open the tasks file or create a new one if not exist
+    std::fstream tasks_file {"tasks.txt", std::ios::out | std::ios::trunc};
+
+    if(!tasks_file.is_open())
+    {
+        std::cout << "Unable to open the file to rewrite tasks to it." << std::endl;
+    }
+    else
+    {
+        for(auto & line: tasks_list)
+        {
+            tasks_file << line << '\n';
+        }
+
+        // close the file
+        tasks_file.close();
+    }
+}
+
+void remove_task_from_list(std::vector<std::string> tasks_list, int line_number)
+{
+    if(line_number > 0 && line_number <= tasks_list.size())
+    {
+        tasks_list.erase(tasks_list.begin() + (line_number - 1));
+        rewrite_tasks_to_file(tasks_list);
+    }
+}
+
 int main()
 {
     // display the main menu of shortcuts
@@ -24,44 +115,12 @@ int main()
 
         getline(std::cin, option);
 
-        // open the tasks file or create a new one if not exist
-        std::fstream tasks_file {"tasks.txt", std::ios::in | std::ios::out | std::ios::app};
-
         /* option-> list */
         if(option == "list")
         {
-            // list all tasks
-            std::cout << "\n[Tasks]\n" << std::endl;
-            
-            // check if the file is open
-            if(!tasks_file.is_open())
-            {
-                std::cout << "Unable to open the tasks file." << std::endl;
-            }
-            else
-            {
-                // loop through the file and extract each line
-                // as a task and push it to the tasks list
-                std::vector<std::string> tasks_list;
+            auto tasks_list = get_tasks_list();        
 
-                std::string single_task;
-                
-                while(getline(tasks_file, single_task))
-                {
-                    tasks_list.push_back(single_task);
-                }
-
-                // display all tasks
-                unsigned short int line {1};
-                for(auto &task: tasks_list)
-                {
-                    std::cout << "[" << line << "] " << task << std::endl;
-                    line++;
-                }
-
-                // close the file
-                tasks_file.close();
-            }
+            display_tasks(tasks_list);
         }
 
         /* option-> add */
@@ -69,16 +128,29 @@ int main()
         {
             // add a new task
             std::cout << "New task: ";
+
             std::string new_task;
+
             getline(std::cin, new_task);
-            tasks_file << new_task << "\n";
+
+            add_task(new_task);
         }
 
         /* option-> remove */
         else if (option == "remove")
         {
             // remove a task
+            int line_num {0};
             std::cout << "Task ID: ";
+
+            // get & store the line number
+            std::cin >> line_num;
+
+            std::cin.ignore();
+
+            auto tasks_list = get_tasks_list();
+
+            remove_task_from_list(tasks_list, line_num);
         }
 
         /* option-> exit */

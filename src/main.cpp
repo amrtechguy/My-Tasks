@@ -100,13 +100,14 @@ void display_help()
     "* list     : to list all tasks.\n" <<
     "* add      : to add a new task to the list.\n" <<
     "* remove   : to remove a task from the list.\n" <<
-    "* exit     : to exit the program.\n" <<
+    "* help     : to display shortcuts.\n" <<
+    "* exit     : to exit the program." <<
     std::endl;
 }
 
-int main()
+void display_menu()
 {
-    // display the main menu of shortcuts
+// display the main menu of shortcuts
     std::string option;
     
     std::cout <<
@@ -184,6 +185,11 @@ int main()
         }
     } 
     while (option != "exit");
+}
+
+int main()
+{
+    display_menu();
 
     return 0;
 }

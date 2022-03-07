@@ -184,7 +184,7 @@ void display_menu()
         else
         {
             // invalid option
-            std::cout << "You entered an invalid option." << std::endl;
+            std::cout << "You entered an invalid option. Enter 'help' for available shortcuts." << std::endl;
         }
     } 
     while (option != "exit");

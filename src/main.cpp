@@ -85,13 +85,23 @@ void rewrite_tasks_to_file(std::vector<std::string> &tasks_list)
     }
 }
 
-void remove_task_from_list(std::vector<std::string> tasks_list, int line_number)
+void remove_task_from_list(std::vector<std::string> tasks_list,  size_t line_number)
 {
     if(line_number > 0 && line_number <= tasks_list.size())
     {
         tasks_list.erase(tasks_list.begin() + (line_number - 1));
         rewrite_tasks_to_file(tasks_list);
     }
+}
+
+void display_help()
+{
+    std::cout << "\n" <<
+    "* list     : to list all tasks.\n" <<
+    "* add      : to add a new task to the list.\n" <<
+    "* remove   : to remove a task from the list.\n" <<
+    "* exit     : to exit the program.\n" <<
+    std::endl;
 }
 
 int main()
@@ -104,10 +114,9 @@ int main()
     "- [Welcome to My Tasks]\n" <<
     "- You can use the following shortcuts\n" <<
     "------------------------------------------------\n" <<
-    "* list     : to list all tasks.\n" <<
-    "* add      : to add a new task to the list.\n" <<
-    "* remove   : to remove a task from the list.\n" <<
-    "* exit     : to exit the program.\n";
+    std::endl;
+
+    display_help();
 
     do
     {
@@ -159,6 +168,12 @@ int main()
             // exit
             std::cout << "Goodby!" << std::endl;
             break;
+        }
+
+        /* option-> help */
+        else if(option == "help")
+        {
+            display_help();
         }
 
         /* option-> anything else ... */

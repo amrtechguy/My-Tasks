@@ -3,7 +3,7 @@ It's a to-do-list console application.
 
 ## How it works
 When you open the program, you'll get a menu of options. Each option or shortcut has a specific function. Enter the option or shortcut name in the console to take an action. Here's a list of valid options or shortcuts that you can use:
-- `list`: to list all tasks.a
+- `list`: to list all tasks.
 
 - `add`: to add a new task to the list.
 
@@ -16,7 +16,7 @@ When you open the program, you'll get a menu of options. Each option or shortcut
 ## The project structure
 - `/.vscode/`: this is for the configuration files of vscode editor on windows.
 
-- `/bin/`: this is where the final build exists.
+- `/bin/`: this is for the project binary files or executable files.
 
 - `/include/`: this is for the project header files.
 

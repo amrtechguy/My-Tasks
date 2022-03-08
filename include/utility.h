@@ -9,6 +9,12 @@
 #include "../include/Task.h"
 #include "../include/TasksList.h"
 
+/**
+ * @brief Display a list of shortcuts supported by the program.
+ * 
+ * @param `void`.
+ * @return `void`.
+ */
 void display_help()
 {
     std::cout << "\n" <<
@@ -20,9 +26,18 @@ void display_help()
     std::endl;
 }
 
+/**
+ * @brief The main menu that contains a list of
+ * options that you can use to interact with the program.
+ * 
+ * Use the shortcut 'exit' to exit the menu and 
+ * logout of the program.
+ * 
+ * @param `void`
+ * @return `void`
+ */
 void display_menu()
 {
-// display the main menu of shortcuts
     std::string option;
     
     std::cout <<
@@ -39,14 +54,15 @@ void display_menu()
         std::cout << "\n-> ";
         getline(std::cin, option);
 
-        /* option-> list */
+
+        // Option `list`: displays all tasks
         if(option == "list")
         {
             TasksList tasks_list {"tasks.txt"};
             tasks_list.display();
         }
 
-        /* option-> add */
+        // Option `add`: add a new task
         else if(option == "add")
         {
             std::cout << "New task: ";
@@ -57,7 +73,8 @@ void display_menu()
             tasks_list.add(new_task);
         }
 
-        /* option-> remove */
+        // Option `remove`: remove a task based on 
+        // its number in the tasks list
         else if (option == "remove")
         {
             int line_num {0};
@@ -70,25 +87,27 @@ void display_menu()
             tasks_list.remove((int)line_num);
         }
 
-        /* option-> exit */
+        // Option `exit`: exit the menu
         else if (option == "exit")
         {
-            std::cout << "Goodby!" << std::endl;
+            std::cout << "Goodby!\n" << std::endl;
             break;
         }
 
-        /* option-> help */
+        // Option `help`: displays a list of shortcuts
         else if(option == "help")
         {
             display_help();
         }
 
-        /* option-> anything else ... */
+        // Option `...`: any other option is invalid
         else
         {
             std::cout << "You entered an invalid option. Enter 'help' for available shortcuts." << std::endl;
         }
-    } 
+    }
+
+    // Keep displaying the menu until you get `exit`
     while (option != "exit");
 }
 

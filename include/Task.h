@@ -10,7 +10,7 @@ private:
 
 public:
     Task(std::string content_val);
-    void display();
+    std::string get();
 };
 
 #endif // TASK_H

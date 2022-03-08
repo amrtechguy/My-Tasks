@@ -5,7 +5,7 @@ Task::Task(std::string content_val)
     : content {content_val}
 {}
 
-void Task::display()
+std::string Task::get()
 {
-    std::cout << content << std::endl;
+    return content;
 }

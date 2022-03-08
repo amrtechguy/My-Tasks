@@ -21,8 +21,8 @@ void display_help()
     "* list     : to list all tasks.\n" <<
     "* add      : to add a new task to the list.\n" <<
     "* remove   : to remove a task from the list.\n" <<
-    "* help     : to display shortcuts.\n" <<
-    "* exit     : to exit the program." <<
+    "* help     : to display a list of valid shortcuts.\n" <<
+    "* exit     : to exit the menu." <<
     std::endl;
 }
 

@@ -33,3 +33,6 @@
 
 # project files
 *.txt
+
+# project directories
+.vscode/

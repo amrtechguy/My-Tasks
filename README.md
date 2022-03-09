@@ -25,6 +25,8 @@ When you open the program, you'll get a menu of options. Each option or shortcut
 ## Environment where tested
 - `IDE`: Visual Studio Code.
 
+- `Compiler`: g++ (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
+
 - `Operating system`: Windows 10, 64-bit.
 
 ## You can improve it

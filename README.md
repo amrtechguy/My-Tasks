@@ -14,13 +14,13 @@ When you open the program, you'll get a menu of options. Each option or shortcut
 - `exit`: to exit the menu.
 
 ## The project structure
-- `/.vscode/`: this is for the configuration files of vscode editor on windows.
+- `.vscode/`: this is for the configuration files of vscode editor on windows.
 
-- `/bin/`: this is for the project binary files or executable files.
+- `bin/`: this is for the project binary files or executable files.
 
-- `/include/`: this is for the project header files.
+- `include/`: this is for the project header files.
 
-- `/src/`: this is for the project source files.
+- `src/`: this is for the project source files.
 
 ## Environment where tested
 - `IDE`: Visual Studio Code.

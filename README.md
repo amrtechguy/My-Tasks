@@ -30,4 +30,4 @@ When you open the program, you'll get a menu of options. Each option or shortcut
 - `Operating system`: Windows 10, 64-bit.
 
 ## You can improve it
-You can use the source code as you like. If you have any suggestions or ideas for improving the project, don't hesitate to share them with us.
+You can make it better. If you have any suggestions or ideas for improving the project, don't hesitate to share them with us.
